@@ -1,0 +1,28 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>demo.spring</groupId>
+		<artifactId>spring-demo-parent</artifactId>
+		<version>1.0.0</version>
+	</parent>
+	<artifactId>api-gateway</artifactId>
+	<packaging>jar</packaging>
+	<name>api-gateway</name>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<exclusions>
+				<exclusion>
+					<!-- Demo purpose : Parent is providing this dependency, Should not have conflict with 
+						other sspring-boot-starter-web modules, as wee are using bom -->
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+	</dependencies>
+</project>
