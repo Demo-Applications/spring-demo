@@ -1,0 +1,35 @@
+version: "3.9"
+services:
+  redis:
+    image: redis 
+    container_name: redis_single_node
+    volumes:
+      - volumes/redis-data:/data
+      - volumes/redis-config:/usr/local/etc/redis
+    ports:
+      - "6379:6379"
+    env_file:
+      - .env.redis
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASSWORD:-default_passw}      
+    command:
+      - /bin/sh
+      - -c
+      - redis-server --requirepass "$${REDIS_PASSWORD:?REDIS_PASSWORD missing}"
+
+
+  redis-insight:
+    image: redislabs/redisinsight:latest
+    container_name: redis_insight    
+    ports:
+      - "8001:8001"
+    volumes:
+      - volumes/redisinsight-data:/db
+    environment:
+      LOG_LEVEL: error
+    restart: unless-stopped
+
+volumes:
+  redis-data:
+  redis-config:
+  redisinsight-data:

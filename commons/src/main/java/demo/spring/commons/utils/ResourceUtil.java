@@ -1,5 +1,3 @@
 package demo.spring.commons.utils;
 
-public class ResourceUtil {
-
-}
+public class ResourceUtil {}

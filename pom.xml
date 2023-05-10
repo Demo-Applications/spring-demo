@@ -15,6 +15,8 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
 		<springframework.boot.version>3.0.6</springframework.boot.version>
+		<google-java-format.version>1.17.0</google-java-format.version>
+		<fmt.maven.version>2.20</fmt.maven.version>
 	</properties>
 	<modules>
 		<module>commons</module>
@@ -64,12 +66,26 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+
+
 	<dependencies>
+		<!-- Intended to be inherited by all services -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.google.googlejavaformat</groupId>
+			<artifactId>google-java-format</artifactId>
+			<version>${google-java-format.version}</version>
+		</dependency>
 	</dependencies>
+
+
 	<build>
 		<sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
 		<testSourceDirectory>${project.basedir}/src/test/java</testSourceDirectory>
@@ -121,6 +137,18 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>com.spotify.fmt</groupId>
+				<artifactId>fmt-maven-plugin</artifactId>
+				<version>${fmt.maven.version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>format</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

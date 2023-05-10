@@ -1,5 +1,7 @@
 # Compiled class file
 *.class
+.data
+.backup
 
 # Log file
 *.log

@@ -1,11 +1,12 @@
 package demo.spring.commons.entities;
-import lombok.Data;
-import java.time.LocalDateTime;
 
+import jakarta.persistence.MappedSuperclass;
+import java.time.LocalDateTime;
+import lombok.Data;
 
 @Data
-public class BaseEntity {
-	private LocalDateTime createdAt;
-	private LocalDateTime updatedAt;
-
+@MappedSuperclass
+public abstract class BaseEntity {
+  private LocalDateTime createdAt;
+  private LocalDateTime updatedAt;
 }
